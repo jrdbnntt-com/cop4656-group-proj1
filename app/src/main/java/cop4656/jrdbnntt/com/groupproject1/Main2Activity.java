@@ -3,7 +3,6 @@ package cop4656.jrdbnntt.com.groupproject1;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 import android.database.Cursor;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -16,10 +15,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 
 
-public class Main2Activity extends AppCompatActivity{
+import cop4656.jrdbnntt.com.groupproject1.provider.MyContentProvider;
 
-
-    final Context context = this;
+public class Main2Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -22,7 +22,7 @@
         <activity android:name=".MainActivity" />
 
         <provider
-            android:name=".MyContentProvider"
+            android:name=".provider.MyContentProvider"
             android:authorities="cop4656.jrdbnntt.com.groupproject1.provider"
             android:enabled="true"
             android:exported="true"
@@ -37,7 +37,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".navActiv"></activity>
+        <activity android:name=".navActiv"/>
+
+        <receiver
+            android:name=".CourseAlarmReceiver"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

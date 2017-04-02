@@ -7,16 +7,12 @@ import android.widget.CheckBox;
 import android.widget.Button;
 import android.view.*;
 import java.lang.StringBuilder;
-import android.database.Cursor;
+
 import android.net.Uri;
-import android.os.Bundle;
-import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.content.ContentValues;
-import android.view.View.OnClickListener;
 import android.content.Intent;
 
+import cop4656.jrdbnntt.com.groupproject1.provider.MyContentProvider;
 
 public class MainActivity extends AppCompatActivity {
     EditText cNum, start1, end1, room1;

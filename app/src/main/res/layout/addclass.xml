@@ -23,10 +23,9 @@
         android:layout_alignBaseline="@+id/courseNum"
         android:layout_alignBottom="@+id/courseNum"
         android:layout_alignStart="@+id/start"
-        android:text="TextView"
+        android:text="Course number:"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
-        tools:text="Course number:" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/courseNum"
@@ -35,8 +34,7 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="COP3330"
-        android:inputType="text"
-        android:textColor="@android:color/darker_gray"
+        android:inputType="textCapCharacters"
         android:layout_below="@+id/add"
         android:layout_alignParentEnd="true" />
 
@@ -143,10 +141,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="TextView"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        tools:text="Room number:"
+        android:text="Room number:"
         android:layout_below="@+id/fri"
         android:layout_alignStart="@+id/days" />
 
@@ -159,16 +156,27 @@
         android:layout_alignParentEnd="true"
         android:ems="10"
         android:hint="MCH201"
-        android:inputType="text" />
+        android:inputType="textCapCharacters" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="41dp"
-        android:layout_marginEnd="14dp"
-        android:layout_toStartOf="@+id/wen"
-        android:text="Submit" />
+        android:layout_marginEnd="10dp"
+        android:text="Submit"
+        android:onClick="submitClick"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/wen" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/submit"
+        android:layout_alignBottom="@+id/submit"
+        android:layout_toEndOf="@+id/tues"
+        android:onClick="scheduleButton"
+        android:text="View Schedule" />
 
 </RelativeLayout>

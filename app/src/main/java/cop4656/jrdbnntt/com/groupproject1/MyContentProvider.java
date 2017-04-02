@@ -13,6 +13,7 @@ import android.util.Log;
 public class MyContentProvider extends ContentProvider {
 
     MainDatabaseHelper helper1;
+
     public static final String DBNAME = "ScheduleDB1";
     public static final String TABLE_NAME = "Classes";
     public static final String KEY_ID = "_id";
@@ -21,7 +22,7 @@ public class MyContentProvider extends ContentProvider {
     public static final String COLUMN_START = "start";
     public static final String COLUMN_END = "end";
     public static final String COLUMN_DAYS = "days";
-    private static final String SQL_CREATE_MAIN = "CREATE TABLE " + TABLE_NAME + " (" + KEY_ID + " _id INTEGER PRIMARY KEY, "
+    private static final String SQL_CREATE_MAIN = "CREATE TABLE " + TABLE_NAME + " (" + " _id INTEGER PRIMARY KEY, "
             + COLUMN_CLASS + " TEXT," + COLUMN_ROOM + " TEXT," + COLUMN_START + " TEXT," + COLUMN_END + " TEXT,"
             + COLUMN_DAYS + " TEXT)";
     public static final String AUTHORITY = "cop4656.jrdbnntt.com.groupproject1.provider";

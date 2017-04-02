@@ -13,6 +13,7 @@ import android.util.Log;
 public class MyContentProvider extends ContentProvider {
 
     MainDatabaseHelper helper1;
+
     public static final String DBNAME = "ScheduleDB1";
     public static final String TABLE_NAME = "Classes";
     public static final String KEY_ID = "_id";

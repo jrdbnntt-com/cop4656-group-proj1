@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cop4656.jrdbnntt.com.groupproject1">
+    <permission android:name="cop4656.jrdbnntt.com.groupproject1.permission.READ_PERMISSION"/>
+    <permission android:name="cop4656.jrdbnntt.com.groupproject1.permission.WRITE_PERMISSION"/>
 
     <permission android:name="cop4656.jrdbnntt.com.groupproject1.permission.READ_PERMISSION" />
     <permission android:name="cop4656.jrdbnntt.com.groupproject1.permission.WRITE_PERMISSION" />

@@ -4,6 +4,9 @@
     <permission android:name="cop4656.jrdbnntt.com.groupproject1.permission.READ_PERMISSION"/>
     <permission android:name="cop4656.jrdbnntt.com.groupproject1.permission.WRITE_PERMISSION"/>
 
+    <permission android:name="cop4656.jrdbnntt.com.groupproject1.permission.READ_PERMISSION" />
+    <permission android:name="cop4656.jrdbnntt.com.groupproject1.permission.WRITE_PERMISSION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,9 +25,11 @@
             android:name=".MyContentProvider"
             android:authorities="cop4656.jrdbnntt.com.groupproject1.provider"
             android:enabled="true"
+            android:exported="true"
             android:readPermission="cop4656.jrdbnntt.com.groupproject1.permission.READ_PERMISSION"
-            android:writePermission="cop4656.jrdbnntt.com.groupproject1.permission.WRITE_PERMISSION"
-            android:exported="true"></provider>
-    </application>
+            android:writePermission="cop4656.jrdbnntt.com.groupproject1.permission.WRITE_PERMISSION" />
+        
+        <activity android:name=".Main2Activity"></activity>
+ </application>
 
 </manifest>

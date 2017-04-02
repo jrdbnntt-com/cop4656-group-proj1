@@ -164,7 +164,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="41dp"
         android:layout_marginEnd="10dp"
-        android:text="Submit"
+        android:text="Add class"
+
         android:onClick="submitClick"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/wen" />

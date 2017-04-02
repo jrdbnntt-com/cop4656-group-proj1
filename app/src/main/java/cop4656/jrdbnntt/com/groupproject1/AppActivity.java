@@ -15,8 +15,8 @@ public class AppActivity extends AppCompatActivity {
 
     public void nav(View view)
     {
-        //Intent intent = new Intent(this, MapsActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, navActiv.class);
+        startActivity(intent);
 
     }
 

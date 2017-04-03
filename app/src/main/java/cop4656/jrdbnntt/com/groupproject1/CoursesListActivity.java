@@ -124,7 +124,7 @@ public class CoursesListActivity extends ListActivity {
                     case DialogInterface.BUTTON_POSITIVE:
                         // Delete it!
                         String selectionClause = Course.COLUMN_ID + " = ?";
-                        String[] selectionArgs = new String[] { course.getId().toString() };
+                        String[] selectionArgs = new String[] { course.id.toString() };
                         int rowsDeleted = getContentResolver().delete(
                                 MyContentProvider.getUriForTable(Course.TABLE_NAME),
                                 selectionClause,
@@ -137,6 +137,8 @@ public class CoursesListActivity extends ListActivity {
                                     "Error: Unable to delete",
                                     Toast.LENGTH_SHORT
                             ).show();
+                        } else {
+                            course.disable(getApplicationContext());
                         }
 
                         // Refresh list view

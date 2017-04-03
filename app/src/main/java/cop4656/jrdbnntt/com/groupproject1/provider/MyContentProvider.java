@@ -12,7 +12,6 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 
 import cop4656.jrdbnntt.com.groupproject1.provider.table.Course;
-import cop4656.jrdbnntt.com.groupproject1.provider.table.CourseAlarm;
 import cop4656.jrdbnntt.com.groupproject1.provider.table.DatabaseTable;
 import cop4656.jrdbnntt.com.groupproject1.provider.table.ParkingLocation;
 
@@ -24,7 +23,6 @@ public class MyContentProvider extends ContentProvider {
     static {
         tables = new ArrayList<>();
         tables.add(new Course());
-        tables.add(new CourseAlarm());
         tables.add(new ParkingLocation());
     }
 
@@ -78,6 +76,7 @@ public class MyContentProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, ContentValues values) {
         String tableName = getTableFromUri(uri);
         long id = helper1.getWritableDatabase().insert(tableName, null, values);
+
         return Uri.withAppendedPath(uri, "" + id);
     }
 

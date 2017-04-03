@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">App Name</string>
+    <string name="permission_READ">cop4656.jrdbnntt.com.groupproject1.permission.READ_PERMISSION</string>
+    <string name="permission_WRITE">cop4656.jrdbnntt.com.groupproject1.permission.WRITE_PERMISSION</string>
+    <string name="action_ALARM">cop4656.jrdbnntt.com.groupproject1.action.ALARM</string>
+
+
+
+
     <string name="view_schedule">View Schedule</string>
     <string name="add_course">Add Course</string>
     <string name="cop3330">COP3330</string>

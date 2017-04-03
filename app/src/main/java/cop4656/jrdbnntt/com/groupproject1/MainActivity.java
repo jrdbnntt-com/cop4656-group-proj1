@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_app);
+        setContentView(R.layout.activity_main);
     }
 
     public void nav(View view)
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void view1(View view)
     {
-        Intent intent = new Intent(this, ViewAllCoursesActivity.class);
+        Intent intent = new Intent(this, CoursesListActivity.class);
         startActivity(intent);
 
     }

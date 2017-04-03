@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent">
-
 
     <TextView
         android:id="@+id/add"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="Add Class"
+        android:text="@string/add_course"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -23,7 +21,7 @@
         android:layout_alignBaseline="@+id/courseNum"
         android:layout_alignBottom="@+id/courseNum"
         android:layout_alignStart="@+id/start"
-        android:text="Course number:"
+        android:text="@string/course_name"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
 
@@ -33,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="COP3330"
-        android:inputType="textCapCharacters"
+        android:hint="@string/cop3330"
+        android:inputType="textCapWords"
         android:layout_below="@+id/add"
         android:layout_alignParentEnd="true" />
 
@@ -43,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
-        android:text="Start time:"
+        android:text="@string/start_time"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:layout_marginStart="17dp"
@@ -54,51 +52,33 @@
         android:id="@+id/startT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="hh:mm"
-        android:inputType="time"
         android:layout_alignBaseline="@+id/start"
         android:layout_alignBottom="@+id/start"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:id="@+id/end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="End time:"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:layout_below="@+id/startT"
-        android:layout_alignStart="@+id/start" />
-
-    <EditText
-        android:id="@+id/endT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:focusable="false"
+        android:cursorVisible="false"
         android:ems="10"
-        android:hint="hh:mm"
-        android:inputType="time"
-        android:layout_alignBaseline="@+id/end"
-        android:layout_alignBottom="@+id/end"
-        android:layout_alignParentEnd="true" />
+        android:hint="@string/time_format"
+        android:inputType="text" />
+
 
     <TextView
         android:id="@+id/days"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Select all days:"
+        android:text="@string/day_s"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:layout_below="@+id/endT"
-        android:layout_alignStart="@+id/end" />
+        android:layout_below="@+id/startT"
+        android:layout_alignStart="@+id/start" />
 
     <CheckBox
         android:id="@+id/mon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="M"
+        android:text="@string/m"
         android:layout_alignBaseline="@+id/days"
         android:layout_alignBottom="@+id/days"
         android:layout_toEndOf="@+id/days" />
@@ -109,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/mon"
         android:layout_toEndOf="@+id/mon"
-        android:text="T" />
+        android:text="@string/t" />
 
     <CheckBox
         android:id="@+id/wen"
@@ -117,13 +97,13 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/tues"
         android:layout_toEndOf="@+id/tues"
-        android:text="W" />
+        android:text="@string/w" />
 
     <CheckBox
         android:id="@+id/thur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TH"
+        android:text="@string/th"
         android:layout_alignBaseline="@+id/wen"
         android:layout_alignBottom="@+id/wen"
         android:layout_toEndOf="@+id/wen" />
@@ -132,7 +112,7 @@
         android:id="@+id/fri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="F"
+        android:text="@string/f"
         android:layout_alignTop="@+id/days"
         android:layout_toEndOf="@+id/thur" />
 
@@ -143,7 +123,7 @@
         android:layout_marginTop="28dp"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        android:text="Room number:"
+        android:text="@string/room_number"
         android:layout_below="@+id/fri"
         android:layout_alignStart="@+id/days" />
 
@@ -155,29 +135,17 @@
         android:layout_alignBottom="@+id/roomNum"
         android:layout_alignParentEnd="true"
         android:ems="10"
-        android:hint="MCH201"
+        android:hint="@string/mch201"
         android:inputType="textCapCharacters" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="41dp"
-        android:layout_marginEnd="10dp"
-        android:text="Add class"
-
-        android:onClick="submitClick"
+        android:text="@string/add_course"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/wen" />
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/submit"
-        android:layout_alignBottom="@+id/submit"
-        android:layout_toEndOf="@+id/tues"
-        android:onClick="scheduleButton"
-        android:text="View Schedule" />
 
 </RelativeLayout>

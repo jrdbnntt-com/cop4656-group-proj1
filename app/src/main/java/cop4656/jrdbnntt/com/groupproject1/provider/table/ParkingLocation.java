@@ -1,9 +1,7 @@
 package cop4656.jrdbnntt.com.groupproject1.provider.table;
 
-public class ParkingLocation implements DatabaseTable {
+public class ParkingLocation extends DatabaseTable {
     public static final String TABLE_NAME = "parking_location";
-
-    public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_LOCATION = "location";
 

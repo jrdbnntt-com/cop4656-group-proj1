@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">App Name</string>
+    <string name="view_schedule">View Schedule</string>
+    <string name="add_course">Add Course</string>
+    <string name="cop3330">COP3330</string>
+    <string name="course_name">Course Name:</string>
+    <string name="start_time">Start time:</string>
+    <string name="time_format">h:mm a</string>
+    <string name="day_s">Day(s):</string>
+    <string name="m">M</string>
+    <string name="t">T</string>
+    <string name="w">W</string>
+    <string name="th">TH</string>
+    <string name="f">F</string>
+    <string name="room_number">Room number:</string>
+    <string name="mch201">MCH201</string>
+    <string name="add_class">Add class</string>
 </resources>

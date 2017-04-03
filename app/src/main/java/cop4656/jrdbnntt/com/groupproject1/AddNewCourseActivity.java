@@ -1,8 +1,10 @@
 package cop4656.jrdbnntt.com.groupproject1;
 
 import android.app.TimePickerDialog;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.CheckBox;
 import android.widget.Button;
@@ -92,7 +94,15 @@ public class AddNewCourseActivity extends AppCompatActivity {
         values.put(Course.COLUMN_START_TIME, course.startTime.toString());
         values.put(Course.COLUMN_DAYS, course.days.toString());
 
-        getContentResolver().insert(MyContentProvider.getUriForTable(Course.TABLE_NAME), values);
+        Uri uri = getContentResolver().insert(
+                MyContentProvider.getUriForTable(Course.TABLE_NAME), values);
+
+        if (uri != null) {
+            course.setId(Long.parseLong(uri.getLastPathSegment()));
+            course.enable(this);
+        } else {
+            Log.e("ALARM", "unable to schedule alarm, id was null");
+        }
 
         return true;
     }

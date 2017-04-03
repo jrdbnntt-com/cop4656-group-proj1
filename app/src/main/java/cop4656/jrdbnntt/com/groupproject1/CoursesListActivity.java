@@ -137,6 +137,8 @@ public class CoursesListActivity extends ListActivity {
                                     "Error: Unable to delete",
                                     Toast.LENGTH_SHORT
                             ).show();
+                        } else {
+                            course.disable(getApplicationContext());
                         }
 
                         // Refresh list view

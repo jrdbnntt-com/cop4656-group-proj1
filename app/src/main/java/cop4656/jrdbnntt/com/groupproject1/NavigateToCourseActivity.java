@@ -1,18 +1,30 @@
 package cop4656.jrdbnntt.com.groupproject1;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.content.Intent;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import cop4656.jrdbnntt.com.groupproject1.provider.MyContentProvider;
 import cop4656.jrdbnntt.com.groupproject1.provider.table.Course;
+import cop4656.jrdbnntt.com.groupproject1.provider.types.Time;
 
 public class NavigateToCourseActivity extends AppCompatActivity {
     TextView courseN, roomN, startT, travelT;
@@ -46,7 +58,57 @@ public class NavigateToCourseActivity extends AppCompatActivity {
             startT.setText(course.startTime.toString());
         }
 
+        class DirectionsTask extends AsyncTask<Void, Void, String> {
+            private Exception exception;
 
+            protected void onPreExecute() {
+                travelT.setText("");
+            }
+
+            protected String doInBackground(Void... urls) {
+
+                try {
+                    URL url = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=Lucky+Goat+Coffee,+1307+N+Monroe+St+%235,+Tallahassee,+FL+32303&destination=MCH+Tallahassee,+FL");
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    try {
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                        StringBuilder stringBuilder = new StringBuilder();
+                        String line;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            stringBuilder.append(line).append("\n");
+                        }
+                        bufferedReader.close();
+                        return stringBuilder.toString();
+                    }
+                    finally{
+                        urlConnection.disconnect();
+                    }
+                } catch(Exception e) {
+                    Log.e("ERROR", e.getMessage(), e);
+                    return null;
+                }
+            }
+
+            protected void onPostExecute(String response) {
+                if(response == null) {
+                    response = "ERROR";
+                }
+
+                try {
+                    JSONObject directions = new JSONObject(response);
+                    travelT.setText(directions
+                    .getJSONArray("routes")
+                    .getJSONObject(0)
+                    .getJSONArray("legs")
+                    .getJSONObject(0)
+                    .getJSONObject("duration")
+                    .getString("text"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        new DirectionsTask().execute();
     }
 
     public void navButton(View view)
@@ -55,7 +117,6 @@ public class NavigateToCourseActivity extends AppCompatActivity {
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
-
     }
 
     @Override
@@ -83,6 +144,32 @@ public class NavigateToCourseActivity extends AppCompatActivity {
 
     public Course getCourseById(long courseId) {
         // TODO implement
+        Course temp = new Course();
+        String selection = "_id = ?";
+        String[] args = {Long.toString(courseId)};
+        Cursor cursor = getContentResolver().query(
+                MyContentProvider.getUriForTable(Course.TABLE_NAME),
+                null,
+                selection,
+                args,
+                null
+        );
+
+        if(cursor.getCount() == 1) {
+            cursor.moveToFirst();
+            temp.name = cursor.getString(1);
+            try {
+                temp.startTime = new Time(cursor.getString(3));
+            }
+            catch(Exception e) {
+                Log.e("ERROR", e.getMessage());
+                return null;
+            }
+
+            temp.room = cursor.getString(2);
+            return temp;
+        }
+
         return null;
     }
 }

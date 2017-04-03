@@ -7,7 +7,7 @@ import android.widget.TextView;
 import android.content.Intent;
 import android.widget.Toast;
 
-public class navActiv extends AppCompatActivity {
+public class NavigateToCourseActivity extends AppCompatActivity {
     TextView courseN, roomN, startT;
 
     @Override
@@ -30,7 +30,7 @@ public class navActiv extends AppCompatActivity {
 
     public void navButton(View view)
     {
-        //Intent intent = new Intent(this, navActiv.class); change to the navigation activity, or google maps whatever
+        //Intent intent = new Intent(this, NavigateToCourseActivity.class); change to the navigation activity, or google maps whatever
         //startActivity(intent);
 
     }

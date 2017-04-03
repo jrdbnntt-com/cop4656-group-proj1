@@ -9,31 +9,25 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/tvCourseName"
             android:layout_height="fill_parent"
             android:layout_width="90dp"
             android:padding="10dip" />
 
         <TextView
-            android:id="@+id/text2"
+            android:id="@+id/tvRoom"
             android:layout_height="fill_parent"
             android:layout_width="90dp"
             android:padding="10dip" />
 
         <TextView
-            android:id="@+id/text3"
+            android:id="@+id/tvStartTime"
             android:layout_width="60dp"
             android:layout_height="fill_parent"
             android:padding="10dip" />
 
         <TextView
-            android:id="@+id/text4"
-            android:layout_width="60dp"
-            android:layout_height="fill_parent"
-            android:padding="10dip" />
-
-        <TextView
-            android:id="@+id/text5"
+            android:id="@+id/tvDays"
             android:layout_width="85dp"
             android:layout_height="fill_parent"
             android:padding="10dip" />

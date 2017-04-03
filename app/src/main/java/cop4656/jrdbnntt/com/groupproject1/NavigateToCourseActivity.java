@@ -1,5 +1,6 @@
 package cop4656.jrdbnntt.com.groupproject1;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,16 @@ import android.content.Intent;
 
 public class NavigateToCourseActivity extends AppCompatActivity {
     TextView courseN, roomN, startT;
+
+    private static String ARG_COURSE_ID = "courseId";
+
+
+    public static Intent newNavigateIntent(Context context, long courseId) {
+        Intent intent = new Intent();
+        intent.setClass(context, NavigateToCourseActivity.class);
+        intent.putExtra(ARG_COURSE_ID, courseId);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

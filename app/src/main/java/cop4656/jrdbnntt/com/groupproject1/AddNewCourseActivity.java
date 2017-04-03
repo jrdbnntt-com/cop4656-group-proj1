@@ -98,7 +98,7 @@ public class AddNewCourseActivity extends AppCompatActivity {
                 MyContentProvider.getUriForTable(Course.TABLE_NAME), values);
 
         if (uri != null) {
-            course.setId(Long.parseLong(uri.getLastPathSegment()));
+            course.id = Long.parseLong(uri.getLastPathSegment());
             course.enable(this);
         } else {
             Log.e("ALARM", "unable to schedule alarm, id was null");
@@ -120,7 +120,19 @@ public class AddNewCourseActivity extends AppCompatActivity {
             }
         };
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, setListener, 8, 0, false);
+        int startHour = 8;
+        int startMinute = 0;
+
+        try {
+            Time currentTime = new Time(editText.getText().toString());
+            startHour = currentTime.getCalendar().get(Calendar.HOUR_OF_DAY);
+            startMinute = currentTime.getCalendar().get(Calendar.MINUTE);
+        } catch (ParseException e) {
+            // Ignore it, probably no value
+        }
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(
+                this, setListener, startHour, startMinute, false);
         timePickerDialog.show();
     }
 

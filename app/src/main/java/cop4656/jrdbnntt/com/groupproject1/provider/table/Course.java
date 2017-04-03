@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 import cop4656.jrdbnntt.com.groupproject1.CourseAlarmReceiver;
+import cop4656.jrdbnntt.com.groupproject1.MainActivity;
 import cop4656.jrdbnntt.com.groupproject1.R;
 import cop4656.jrdbnntt.com.groupproject1.provider.types.Time;
 import cop4656.jrdbnntt.com.groupproject1.provider.types.WeekDayCollection;
@@ -60,8 +61,8 @@ public class Course extends DatabaseTable {
     }
 
     private PendingIntent getAlarmIntent(Context context) {
-        Intent intent = CourseAlarmReceiver.newAlarmIntent(context, getId());
-        return PendingIntent.getBroadcast(context, 0, intent, 0);
+        Intent intent = CourseAlarmReceiver.newAlarmIntent(context, this.id);
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
     private List<Long> calcAlarmTimes() {

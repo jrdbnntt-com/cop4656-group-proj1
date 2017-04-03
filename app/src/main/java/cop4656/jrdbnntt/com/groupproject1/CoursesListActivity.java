@@ -124,7 +124,7 @@ public class CoursesListActivity extends ListActivity {
                     case DialogInterface.BUTTON_POSITIVE:
                         // Delete it!
                         String selectionClause = Course.COLUMN_ID + " = ?";
-                        String[] selectionArgs = new String[] { course.getId().toString() };
+                        String[] selectionArgs = new String[] { course.id.toString() };
                         int rowsDeleted = getContentResolver().delete(
                                 MyContentProvider.getUriForTable(Course.TABLE_NAME),
                                 selectionClause,

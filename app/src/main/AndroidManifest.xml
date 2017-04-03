@@ -31,9 +31,6 @@
         <receiver
             android:name=".CourseAlarmReceiver"
             android:enabled="true">
-            <intent-filter>
-                <action android:name="cop4656.jrdbnntt.com.groupproject1.action.ALARM"/>
-            </intent-filter>
         </receiver>
 
 

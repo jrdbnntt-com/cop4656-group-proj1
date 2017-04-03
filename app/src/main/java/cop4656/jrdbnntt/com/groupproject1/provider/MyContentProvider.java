@@ -92,6 +92,7 @@ public class MyContentProvider extends ContentProvider {
         return helper1.getWritableDatabase().update(getTableFromUri(uri), values, selection, selectionArgs);
     }
 
+
     private static final class MainDatabaseHelper extends SQLiteOpenHelper {
         ArrayList<DatabaseTable> tables;
         private static final String DB_NAME = "ScheduleDB1";

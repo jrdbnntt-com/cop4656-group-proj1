@@ -1,6 +1,8 @@
 package cop4656.jrdbnntt.com.groupproject1;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,8 +11,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.content.Intent;
 
+import cop4656.jrdbnntt.com.groupproject1.provider.MyContentProvider;
+import cop4656.jrdbnntt.com.groupproject1.provider.table.Course;
+
 public class NavigateToCourseActivity extends AppCompatActivity {
-    TextView courseN, roomN, startT;
+    TextView courseN, roomN, startT, travelT;
+    Course course;
 
     private static String ARG_COURSE_ID = "courseId";
 
@@ -27,23 +33,28 @@ public class NavigateToCourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigate_to_course);
         Bundle extras = getIntent().getExtras();
-        String extra1 = extras.getString("class");
-        String extra2 = extras.getString("start");
-        String extra3 = extras.getString("room");
-
         courseN = (TextView) findViewById(R.id.cN);
         roomN = (TextView) findViewById(R.id.rN);
         startT = (TextView) findViewById(R.id.startTime);
+        travelT = (TextView) findViewById(R.id.insertText);
 
-        courseN.setText(extra1);
-        startT.setText(extra2);
-        roomN.setText(extra3);
+        course = getCourseById(extras.getLong(ARG_COURSE_ID));
+
+        if(course != null) {
+            courseN.setText(course.name);
+            roomN.setText(course.room);
+            startT.setText(course.startTime.toString());
+        }
+
+
     }
 
     public void navButton(View view)
     {
-        //Intent intent = new Intent(this, NavigateToCourseActivity.class); change to the navigation activity, or google maps whatever
-        //startActivity(intent);
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=Milton+Carothers+Hall+FSU");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
 
     }
 
@@ -68,6 +79,11 @@ public class NavigateToCourseActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public Course getCourseById(long courseId) {
+        // TODO implement
+        return null;
     }
 }
 

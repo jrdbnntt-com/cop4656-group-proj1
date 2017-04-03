@@ -101,6 +101,8 @@ public class CoursesListActivity extends ListActivity {
 
                     case DialogInterface.BUTTON_NEGATIVE:
                         // TODO Navigate
+                        Intent intent = NavigateToCourseActivity.newNavigateIntent(CoursesListActivity.this, course.id);
+                        startActivity(intent);
                         break;
                 }
 

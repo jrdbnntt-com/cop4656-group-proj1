@@ -66,7 +66,23 @@ public class AddNewCourseActivity extends AppCompatActivity {
 
         // Construct course data from input
         course.name = etCourseName.getText().toString();
+        if(!course.name.matches("[a-zA-Z][a-zA-Z][a-zA-Z][0-9][0-9][0-9][0-9]"))
+        {
+            if(course.name.length()<=0)
+                etCourseName.setError("Missing");
+            else
+                etCourseName.setError("Not a valid course");
+            return false;
+        }
         course.room = etRoom.getText().toString();
+        if(!course.room.matches("[a-zA-Z][a-zA-Z][a-zA-Z][0-9][0-9][0-9]"))
+        {
+            if(course.room.length()<=0)
+                etRoom.setError("Missing");
+            else
+                etRoom.setError("Not a valid room number");
+            return false;
+        }
 
         course.days = new WeekDayCollection();
         course.days.setDay(WeekDayCollection.WeekDay.MONDAY, cbMonday.isChecked());

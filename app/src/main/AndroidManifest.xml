@@ -28,11 +28,24 @@
             android:readPermission="cop4656.jrdbnntt.com.groupproject1.permission.READ_PERMISSION"
             android:writePermission="cop4656.jrdbnntt.com.groupproject1.permission.WRITE_PERMISSION" />
 
+
+        <receiver android:name=".WidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info"/>
+        </receiver>
+
+
+
         <receiver
             android:name=".CourseAlarmReceiver"
             android:enabled="true">
         </receiver>
 
+        <service android:name=".WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
 
         <activity android:name=".AddNewCourseActivity" />
         <activity android:name=".NavigateToCourseActivity"/>

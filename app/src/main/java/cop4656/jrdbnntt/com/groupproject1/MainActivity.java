@@ -6,13 +6,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    Button bAddCourse;
+    Button bViewSchedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bAddCourse = (Button) findViewById(R.id.bAddCourse);
+        bViewSchedule = (Button) findViewById(R.id.bViewSchedule);
+
+        bAddCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddNewCourseActivity.class);
+                startActivity(intent);
+            }
+        });
+        bViewSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CoursesListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -29,24 +51,4 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void nav(View view)
-    {
-        Intent intent = new Intent(this, NavigateToCourseActivity.class);
-        startActivity(intent);
-
-    }
-
-    public void addClass(View view)
-    {
-        Intent intent = new Intent(this, AddNewCourseActivity.class);
-        startActivity(intent);
-
-    }
-
-    public void view1(View view)
-    {
-        Intent intent = new Intent(this, CoursesListActivity.class);
-        startActivity(intent);
-
-    }
 }

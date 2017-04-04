@@ -1,10 +1,14 @@
 package cop4656.jrdbnntt.com.groupproject1;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +33,8 @@ import cop4656.jrdbnntt.com.groupproject1.provider.types.Time;
 public class NavigateToCourseActivity extends AppCompatActivity {
     TextView courseN, roomN, startT, travelT;
     Course course;
+    Resources res;
+    Location loc;
 
     private static String ARG_COURSE_ID = "courseId";
 
@@ -49,10 +55,16 @@ public class NavigateToCourseActivity extends AppCompatActivity {
         roomN = (TextView) findViewById(R.id.rN);
         startT = (TextView) findViewById(R.id.startTime);
         travelT = (TextView) findViewById(R.id.insertText);
+        res = getResources();
+
+        // TODO access current location
+        // final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        // loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        // Log.i("LOCATION", loc.toString());
 
         course = getCourseById(extras.getLong(ARG_COURSE_ID));
 
-        if(course != null) {
+        if (course != null) {
             courseN.setText(course.name);
             roomN.setText(course.room);
             startT.setText(course.startTime.toString());
@@ -60,15 +72,21 @@ public class NavigateToCourseActivity extends AppCompatActivity {
 
         class DirectionsTask extends AsyncTask<Void, Void, String> {
             private Exception exception;
+            private String API = "https://maps.googleapis.com/maps/api/directions/json?origin=%s&destination=%s";
+            private String origin, destination;
 
             protected void onPreExecute() {
-                travelT.setText("");
+                travelT.setText("calculating...");
             }
 
-            protected String doInBackground(Void... urls) {
+            protected String doInBackground(Void... v) {
 
                 try {
-                    URL url = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=Lucky+Goat+Coffee,+1307+N+Monroe+St+%235,+Tallahassee,+FL+32303&destination=MCH+Tallahassee,+FL");
+
+                    origin = Uri.encode("University Club Tallahassee, FL");
+                    destination = getAddress(course.room);
+                    Log.i("FORMAT", String.format(API, origin, destination));
+                    URL url = new URL(String.format(API, origin, destination));
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     try {
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -79,30 +97,29 @@ public class NavigateToCourseActivity extends AppCompatActivity {
                         }
                         bufferedReader.close();
                         return stringBuilder.toString();
-                    }
-                    finally{
+                    } finally {
                         urlConnection.disconnect();
                     }
-                } catch(Exception e) {
+                } catch (Exception e) {
                     Log.e("ERROR", e.getMessage(), e);
                     return null;
                 }
             }
 
-            protected void onPostExecute(String response) {
-                if(response == null) {
-                    response = "ERROR";
+            protected void onPostExecute(String s) {
+                if (s == null) {
+                    s = "ERROR";
                 }
 
                 try {
-                    JSONObject directions = new JSONObject(response);
-                    travelT.setText(directions
-                    .getJSONArray("routes")
-                    .getJSONObject(0)
-                    .getJSONArray("legs")
-                    .getJSONObject(0)
-                    .getJSONObject("duration")
-                    .getString("text"));
+                    JSONObject json = new JSONObject(s);
+                    travelT.setText(json
+                            .getJSONArray("routes")
+                            .getJSONObject(0)
+                            .getJSONArray("legs")
+                            .getJSONObject(0)
+                            .getJSONObject("duration")
+                            .getString("text"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -113,10 +130,16 @@ public class NavigateToCourseActivity extends AppCompatActivity {
 
     public void navButton(View view)
     {
-        Uri gmmIntentUri = Uri.parse("google.navigation:q=Milton+Carothers+Hall+FSU");
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + getAddress(course.room));
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
+    }
+
+    public String getAddress(String room) {
+        int id = res.getIdentifier(room.substring(0,3).toUpperCase(), "string", getPackageName());
+        String address = res.getString(id);
+        return Uri.encode(address + " Florida State University");
     }
 
     @Override

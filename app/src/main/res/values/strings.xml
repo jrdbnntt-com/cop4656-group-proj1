@@ -5,8 +5,6 @@
     <string name="action_ALARM">cop4656.jrdbnntt.com.groupproject1.action.ALARM</string>
 
 
-
-
     <string name="view_schedule">View Schedule</string>
     <string name="add_course">Add Course</string>
     <string name="cop3330">COP3330</string>
@@ -22,6 +20,7 @@
     <string name="room_number">Room number:</string>
     <string name="mch201">MCH201</string>
     <string name="add_class">Add class</string>
+    <string name="my_preferences">Preferences</string>
 
 
     <!-- Building name to string mappings -->

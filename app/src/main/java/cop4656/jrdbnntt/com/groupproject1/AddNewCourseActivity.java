@@ -66,21 +66,18 @@ public class AddNewCourseActivity extends AppCompatActivity {
 
         // Construct course data from input
         course.name = etCourseName.getText().toString();
-        if(!course.name.matches("[a-zA-Z][a-zA-Z][a-zA-Z][0-9][0-9][0-9][0-9]"))
-        {
-            if(course.name.length()<=0)
-                etCourseName.setError("Missing");
-            else
-                etCourseName.setError("Not a valid course");
+        if (course.name.length() == 0) {
+            etCourseName.setError("Missing");
             return false;
         }
+
         course.room = etRoom.getText().toString();
-        if(!course.room.matches("[a-zA-Z][a-zA-Z][a-zA-Z][0-9][0-9][0-9]"))
-        {
-            if(course.room.length()<=0)
+        if (!course.room.matches("[a-zA-Z]+[0-9]+")) {
+            if (course.room.length() <= 0) {
                 etRoom.setError("Missing");
-            else
+            } else {
                 etRoom.setError("Not a valid room number");
+            }
             return false;
         }
 
@@ -164,6 +161,10 @@ public class AddNewCourseActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.iViewSchedule:
                 i = new Intent(this, CoursesListActivity.class);
+                startActivity(i);
+                break;
+            case R.id.iPreferences:
+                i = new Intent(this, PreferencesActivity.class);
                 startActivity(i);
                 break;
         }

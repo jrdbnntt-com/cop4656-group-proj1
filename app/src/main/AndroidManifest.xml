@@ -45,9 +45,20 @@
             android:permission="android.permission.BIND_REMOTEVIEWS"/>
             android:enabled="true"/>
 
-        <activity android:name=".AddNewCourseActivity" />
-        <activity android:name=".NavigateToCourseActivity" />
-        <activity android:name=".CoursesListActivity" />
+        <activity
+            android:name=".AddNewCourseActivity"
+            android:label="@string/add_course"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".NavigateToCourseActivity"
+            android:label="@string/navigate"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".CoursesListActivity"
+            android:label="@string/schedule"
+            android:theme="@style/AppThemeMaterial"/>
+        <activity
+            android:name=".PreferencesActivity"
+            android:label="@string/preferences"
+            android:theme="@style/AppThemeMaterial"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,7 +66,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AppPreferences"></activity>
+
     </application>
 
 </manifest>

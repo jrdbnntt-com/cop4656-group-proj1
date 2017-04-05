@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">App Name</string>
+    <string name="app_name">NavigateU</string>
     <string name="permission_READ">cop4656.jrdbnntt.com.groupproject1.permission.READ_PERMISSION</string>
     <string name="permission_WRITE">cop4656.jrdbnntt.com.groupproject1.permission.WRITE_PERMISSION</string>
     <string name="action_ALARM">cop4656.jrdbnntt.com.groupproject1.action.ALARM</string>
@@ -212,4 +212,13 @@
     <string name="SCO">Womens Soccer</string>
     <string name="SOF">Womens Softball</string>
     <string name="PG1">Woodward Avenue Garage 1</string>
+    <string name="navigate">Navigate</string>
+    <string name="preferences">Preferences</string>
+    <string name="schedule">Course Schedule</string>
+    <string name="placeholder_time">12:00 AM</string>
+    <string name="placeholder_days">MoTuWeThFr</string>
+    <string name="save">Save</string>
+    <string name="courses">Courses:</string>
+    <string name="today_s_classes"><u>Today\'s Classes</u></string>
+    <string name="view_full_schedule">View Full Schedule</string>
 </resources>

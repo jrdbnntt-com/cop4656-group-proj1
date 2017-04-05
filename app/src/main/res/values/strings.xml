@@ -212,4 +212,9 @@
     <string name="SCO">Womens Soccer</string>
     <string name="SOF">Womens Softball</string>
     <string name="PG1">Woodward Avenue Garage 1</string>
+    <string name="navigate">Navigate</string>
+    <string name="preferences">Preferences</string>
+    <string name="schedule">Course Schedule</string>
+    <string name="placeholder_time">12:00 AM</string>
+    <string name="placeholder_days">MoTuWeThFr</string>
 </resources>

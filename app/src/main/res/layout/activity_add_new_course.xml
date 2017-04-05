@@ -3,18 +3,6 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/add"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:text="@string/add_course"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="50sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
         android:id="@+id/courseT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

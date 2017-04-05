@@ -178,6 +178,10 @@ public class CoursesListActivity extends ListActivity {
                 i = new Intent(this, AddNewCourseActivity.class);
                 startActivity(i);
                 break;
+            case R.id.iPreferences:
+                i = new Intent(this, AppPreferences.class);
+                startActivity(i);
+                break;
         }
 
         return true;

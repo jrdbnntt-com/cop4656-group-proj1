@@ -1,9 +1,12 @@
 package cop4656.jrdbnntt.com.groupproject1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -80,5 +83,28 @@ public class AppPreferences extends AppCompatActivity {
         {
             Toast.makeText(this, "ERR: DATA NOT WRITTEN.",Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.course_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent i;
+        switch (item.getItemId()) {
+            case R.id.iAddCourse:
+                i = new Intent(this, AddNewCourseActivity.class);
+                startActivity(i);
+                break;
+            case R.id.iViewSchedule:
+                i = new Intent(this, CoursesListActivity.class);
+                startActivity(i);
+                break;
+        }
+
+        return true;
     }
 }

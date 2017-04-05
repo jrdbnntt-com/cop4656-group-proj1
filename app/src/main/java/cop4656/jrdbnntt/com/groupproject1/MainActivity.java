@@ -37,18 +37,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_options_menu, menu);
+        getMenuInflater().inflate(R.menu.course_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(this, AppPreferences.class);
-        startActivity(i);
+        Intent i;
+        switch (item.getItemId()) {
+            case R.id.iAddCourse:
+                i = new Intent(this, AddNewCourseActivity.class);
+                startActivity(i);
+                break;
+            case R.id.iViewSchedule:
+                i = new Intent(this, CoursesListActivity.class);
+                startActivity(i);
+                break;
+            case R.id.iPreferences:
+                i = new Intent(this, AppPreferences.class);
+                startActivity(i);
+                break;
+        }
 
         return true;
     }
-
 }

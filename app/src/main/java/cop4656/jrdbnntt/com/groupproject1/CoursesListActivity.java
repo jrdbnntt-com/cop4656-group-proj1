@@ -97,10 +97,15 @@ public class CoursesListActivity extends ListActivity {
                 switch (which) {
                     case DialogInterface.BUTTON_POSITIVE:
                         // TODO Edit
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "Sorry, not implemented :/",
+                                Toast.LENGTH_SHORT
+                        ).show();
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
-                        // TODO Navigate
+                        // Navigate
                         Intent intent = NavigateToCourseActivity.newNavigateIntent(CoursesListActivity.this, course.id);
                         startActivity(intent);
                         break;

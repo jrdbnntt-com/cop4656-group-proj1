@@ -218,4 +218,7 @@
     <string name="placeholder_time">12:00 AM</string>
     <string name="placeholder_days">MoTuWeThFr</string>
     <string name="save">Save</string>
+    <string name="courses">Courses:</string>
+    <string name="today_s_classes"><u>Today\'s Classes</u></string>
+    <string name="view_full_schedule">View Full Schedule</string>
 </resources>

@@ -97,4 +97,15 @@ public class WeekDayCollection extends SQLiteSerializedType {
 
         return days;
     }
+
+
+    public boolean includes(Calendar calendarDay) {
+        int checkDay = calendarDay.get(Calendar.DAY_OF_WEEK);
+        for (WeekDay day : WeekDay.values()) {
+            if (day.getId() == checkDay && this.getDay(day)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -5,57 +5,63 @@ import android.database.Cursor;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import cop4656.jrdbnntt.com.groupproject1.provider.MyContentProvider;
 import cop4656.jrdbnntt.com.groupproject1.provider.table.Course;
+import cop4656.jrdbnntt.com.groupproject1.provider.types.Time;
+import cop4656.jrdbnntt.com.groupproject1.provider.types.WeekDayCollection;
 
 /**
  * Created by Cristian Palencia on 4/4/2017.
  */
 
 public class WidgetAdapter implements RemoteViewsService.RemoteViewsFactory {
-    Context context;
+    private Context context;
 
-    Cursor  cursor;
+    private ArrayList<String> courseDescriptors = new ArrayList<>();
 
-    String[] list = {"COP4530", "CIS4931", "COP4020"};// Insteado of using this list use the ContentProvider to find list
-
-    ArrayList<String> stringList= new ArrayList<>();
-
-
-
-    public WidgetAdapter(Context context)
-    {
-        this.context=context;
-
-
+    public WidgetAdapter(Context context) {
+        this.context = context;
     }
-
 
 
     @Override
     public void onCreate() {
-        cursor = context.getContentResolver().query(
+        Cursor cursor = context.getContentResolver().query(
                 MyContentProvider.getUriForTable(Course.TABLE_NAME),
                 new String [] {
-                        Course.COLUMN_NAME
+                        Course.COLUMN_NAME,
+                        Course.COLUMN_START_TIME,
+                        Course.COLUMN_DAYS
                 },
                 null,
                 null,
                 null
         );
-        while(cursor.moveToFirst())
-        {
-            String course = cursor.getString(0);
-            stringList.add(course);
+
+        Course course;
+        Calendar today = GregorianCalendar.getInstance();
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                try {
+                    course = new Course();
+                    course.name = cursor.getString(0);
+                    course.startTime = new Time(cursor.getString(1));
+                    course.days = new WeekDayCollection(cursor.getString(2));
+
+                    if (course.days.includes(today)) {
+                        courseDescriptors.add(course.name + " @ " + course.startTime.serialize());
+                    }
+                } catch (ParseException e) {
+                    // Ignore
+                }
+            }
+            cursor.close();
         }
-
-
-
-
-        list=stringList.toArray(new String[stringList.size()]);
-        cursor.close();
     }
 
     @Override
@@ -70,16 +76,13 @@ public class WidgetAdapter implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public int getCount() {
-        return list.length;
+        return courseDescriptors.size();
     }
 
     @Override
     public RemoteViews getViewAt(int i) {
-
-
-
-        RemoteViews rv= new RemoteViews(context.getPackageName(),R.layout.list_item);
-        rv.setTextViewText(R.id.textView, list[i]);
+        RemoteViews rv = new RemoteViews(context.getPackageName(),R.layout.list_item);
+        rv.setTextViewText(R.id.textView, courseDescriptors.get(i));
         return rv;
     }
 

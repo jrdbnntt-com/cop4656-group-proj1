@@ -161,7 +161,7 @@ public class NavigateToCourseActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.iPreferences:
-                i = new Intent(this, AppPreferences.class);
+                i = new Intent(this, PreferencesActivity.class);
                 startActivity(i);
                 break;
         }

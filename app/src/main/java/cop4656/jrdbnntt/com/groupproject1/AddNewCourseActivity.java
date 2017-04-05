@@ -73,7 +73,7 @@ public class AddNewCourseActivity extends AppCompatActivity {
 
         course.room = etRoom.getText().toString();
         if (!course.room.matches("[a-zA-Z]+[0-9]+")) {
-            if (course.room.length()<=0) {
+            if (course.room.length() <= 0) {
                 etRoom.setError("Missing");
             } else {
                 etRoom.setError("Not a valid room number");
@@ -164,7 +164,7 @@ public class AddNewCourseActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.iPreferences:
-                i = new Intent(this, AppPreferences.class);
+                i = new Intent(this, PreferencesActivity.class);
                 startActivity(i);
                 break;
         }

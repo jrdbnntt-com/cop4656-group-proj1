@@ -5,6 +5,8 @@ import android.app.PendingIntent;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.text.DateFormat;
@@ -27,7 +29,7 @@ import cop4656.jrdbnntt.com.groupproject1.provider.types.WeekDayCollection;
 public class Course extends DatabaseTable {
 
     // TODO add to prefs
-    private static final int MINUTES_BEFORE_CLASS_TO_ALARM = 30;
+    private static final String DEFAULT_ALARM_BUFFER = "30";
 
     // Database
     public static final String TABLE_NAME = "course";
@@ -65,8 +67,9 @@ public class Course extends DatabaseTable {
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
-    private List<Long> calcAlarmTimes() {
+    private List<Long> calcAlarmTimes(int alarmBufferMinutes) {
         List<Long> triggerTimes = new ArrayList<>();
+
 
         for (WeekDayCollection.WeekDay day : days.getEnabledDays()) {
             Calendar calendar = GregorianCalendar.getInstance();
@@ -75,7 +78,7 @@ public class Course extends DatabaseTable {
             calendar.set(Calendar.MINUTE, startTime.getCalendar().get(Calendar.MINUTE));
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND, 0);
-            calendar.add(Calendar.MINUTE, -1*MINUTES_BEFORE_CLASS_TO_ALARM);
+            calendar.add(Calendar.MINUTE, -1*alarmBufferMinutes);
             triggerTimes.add(calendar.getTimeInMillis());
         }
 
@@ -84,9 +87,14 @@ public class Course extends DatabaseTable {
 
     public void enable(Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pendingIntent = getAlarmIntent(context);
 
-        for (Long triggerTime : calcAlarmTimes()) {
+        PendingIntent pendingIntent = getAlarmIntent(context);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        int alarmBufferMinutes = Integer.parseInt(
+                preferences.getString("alarmBuffer", DEFAULT_ALARM_BUFFER)
+        );
+
+        for (Long triggerTime : calcAlarmTimes(alarmBufferMinutes)) {
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, AlarmManager.INTERVAL_DAY * 7, pendingIntent);
 
             // Log new alarm

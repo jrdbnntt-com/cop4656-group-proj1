@@ -1,8 +1,11 @@
 package cop4656.jrdbnntt.com.groupproject1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.iPreferences:
-                i = new Intent(this, AppPreferences.class);
+                i = new Intent(this, PreferencesActivity.class);
                 startActivity(i);
                 break;
         }

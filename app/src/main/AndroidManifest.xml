@@ -56,9 +56,9 @@
             android:label="@string/schedule"
             android:theme="@style/AppThemeMaterial"/>
         <activity
-            android:name=".AppPreferences"
+            android:name=".PreferencesActivity"
             android:label="@string/preferences"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppThemeMaterial"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
